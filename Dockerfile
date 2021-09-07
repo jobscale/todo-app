@@ -3,8 +3,10 @@ WORKDIR /home/node
 COPY . .
 RUN chown -R node. .
 USER node
-RUN rm -fr node_modules package-lock.json yarn.lock \
- && npm i && npm run build && rm -fr node_modules && npm i --no-save serve
+RUN rm -fr node_modules package-lock.json yarn.lock
+RUN npm i
+RUN npm run build
+RUN rm -fr node_modules && npm i --no-save serve
 
 FROM node:bullseye-slim
 SHELL ["bash", "-c"]
