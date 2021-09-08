@@ -1,10 +1,10 @@
-FROM node:bullseye-slim as builder
+FROM node:bullseye as builder
 WORKDIR /home/node
 COPY . .
 RUN chown -R node. .
 USER node
 RUN rm -fr node_modules package-lock.json yarn.lock
-RUN npm i || (npm i core-js@3 && npm i)
+RUN npm i
 RUN npm run build
 RUN rm -fr node_modules && npm i --no-save serve
 
