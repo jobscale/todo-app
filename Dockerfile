@@ -14,5 +14,5 @@ WORKDIR /home/node
 COPY --from=builder /home/node/dist dist
 COPY --from=builder /home/node/node_modules node_modules
 COPY package.json .
-EXPOSE 80
-CMD ["bash", "-c", "PORT=80 npm start"]
+EXPOSE 3000
+CMD ["bash", "-c", "PORT=3000 npm start"]
