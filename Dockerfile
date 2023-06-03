@@ -1,17 +1,20 @@
-FROM node:bullseye as builder
+FROM node:lts-bullseye as builder
 WORKDIR /home/node
-COPY . .
-RUN chown -R node. .
+COPY --chown=node:staff package.json package.json
 USER node
-RUN rm -fr node_modules package-lock.json yarn.lock
 RUN npm i
+
+COPY --chown=node:staff babel.config.js babel.config.js
+COPY --chown=node:staff vue.config.js vue.config.js
+COPY --chown=node:staff public public
+COPY --chown=node:staff src src
 RUN npm run build
 RUN rm -fr node_modules && npm i --no-save serve
 
-FROM node:bullseye-slim
+FROM node:lts-bullseye-slim
 SHELL ["bash", "-c"]
 WORKDIR /home/node
-COPY --from=builder /home/node/dist dist
+COPY --from=builder /home/node/docs docs
 COPY --from=builder /home/node/node_modules node_modules
 COPY package.json .
 EXPOSE 3000
