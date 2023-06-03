@@ -4,9 +4,11 @@ COPY --chown=node:staff package.json package.json
 USER node
 RUN npm i
 
+COPY --chown=node:staff .eslintrc.js .eslintrc.js
 COPY --chown=node:staff babel.config.js babel.config.js
 COPY --chown=node:staff vue.config.js vue.config.js
 COPY --chown=node:staff public public
+COPY --chown=node:staff docs/CNAME docs/CNAME
 COPY --chown=node:staff src src
 RUN npm run build
 RUN rm -fr node_modules && npm i --no-save serve
