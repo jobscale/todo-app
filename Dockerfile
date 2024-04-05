@@ -1,6 +1,6 @@
-FROM node:lts-bullseye as builder
+FROM node:lts-bookworm-slim as builder
 WORKDIR /home/node
-COPY --chown=node:staff package.json package.json
+COPY --chown=node:staff package.json .
 USER node
 RUN npm i
 
@@ -13,7 +13,7 @@ COPY --chown=node:staff src src
 RUN npm run build
 RUN rm -fr node_modules && npm i --no-save serve
 
-FROM node:lts-bullseye-slim
+FROM node:lts-bookworm-slim
 SHELL ["bash", "-c"]
 WORKDIR /home/node
 COPY --from=builder /home/node/docs docs
