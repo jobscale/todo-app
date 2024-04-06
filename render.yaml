@@ -12,3 +12,5 @@ services:
   envVars:
   - key: ENV
     sync: false
+  domains:
+  - todo-vue.jsx.jp
