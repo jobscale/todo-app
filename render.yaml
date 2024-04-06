@@ -1,0 +1,14 @@
+version: "1"
+services:
+- type: web
+  name: todo
+  plan: free
+  region: oregon
+  repo: https://github.com/jobscale/todo-app
+  branch: main
+  env: node
+  buildCommand: npm i && npm i --no-save serve && npm run build
+  startCommand: npm start
+  envVars:
+  - key: ENV
+    sync: false
