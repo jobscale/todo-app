@@ -1,4 +1,4 @@
-FROM node:lts-bookworm-slim as builder
+FROM node:lts-bookworm-slim AS builder
 WORKDIR /home/node
 COPY --chown=node:staff package.json .
 USER node
