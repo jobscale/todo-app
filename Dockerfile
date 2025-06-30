@@ -1,7 +1,9 @@
 FROM node:lts-bookworm-slim AS builder
 WORKDIR /home/node
-COPY --chown=node:staff package.json .
+RUN apt-get update && apt-get install -y python3-pip \
+ && apt-get clean && rm -fr /var/lib/apt/lists/*
 USER node
+COPY --chown=node:staff package.json .
 RUN npm i
 
 COPY --chown=node:staff .eslintrc.js .eslintrc.js
