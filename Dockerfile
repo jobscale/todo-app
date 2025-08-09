@@ -1,6 +1,6 @@
 FROM node:lts-bookworm-slim AS builder
 WORKDIR /home/node
-ENV DEBIAN_FRONTEND noninteractive
+ENV DEBIAN_FRONTEND=noninteractive
 RUN apt-get update && apt-get install -y --no-install-recommends python3-pip \
  && apt-get clean && rm -fr /var/lib/apt/lists/*
 USER node
