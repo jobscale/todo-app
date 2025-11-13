@@ -1,4 +1,4 @@
-FROM node:lts-bookworm-slim AS builder
+FROM node:22-trixie-slim AS builder
 WORKDIR /home/node
 ENV DEBIAN_FRONTEND=noninteractive
 RUN apt-get update && apt-get install -y --no-install-recommends python3-pip \
@@ -16,7 +16,7 @@ COPY --chown=node:staff src src
 RUN npm run build
 RUN rm -fr node_modules && npm i --no-save serve
 
-FROM node:lts-bookworm-slim
+FROM node:22-trixie-slim
 SHELL ["bash", "-c"]
 WORKDIR /home/node
 COPY --from=builder /home/node/docs docs
