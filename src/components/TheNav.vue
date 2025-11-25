@@ -1,9 +1,15 @@
 <template>
   <div class="TheNav">
-    <router-link :to="{ name: 'todo-list' }" data-testid="TheNav__TodoList">
+    <router-link
+      :to="{ name: 'todo-list' }"
+      data-testid="TheNav__TodoList"
+    >
       Todo List
     </router-link> |
-    <router-link :to="{ name: 'recycle-bin' }" data-testid="TheNav__RecycleBin">
+    <router-link
+      :to="{ name: 'recycle-bin' }"
+      data-testid="TheNav__RecycleBin"
+    >
       Recycle Bin
     </router-link>
   </div>
